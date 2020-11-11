@@ -1,26 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <div id="eg">
-        <!-- v-once：一次性插值，更改不更新 -->
-        <h3 v-once>{{message}}</h3>
-        <!-- v-bind：绑定属性 -->
-        <div v-bind:id="'div'+num">div1</div>
-        <button v-bind:disabled="btnDisabled">禁用</button>
-        <div>
-            fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
-            fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
-            fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
-            fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
-            fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
-            fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
+    <section>
+        <h2>插值</h2>
+        <div id="eg">
+            <!-- v-once：一次性插值，更改不更新 -->
+            <h3 v-once>{{message}}</h3>
+            <!-- v-bind：绑定属性 -->
+            <div v-bind:id="'div'+num">div1</div>
+            <button v-bind:disabled="btnDisabled">禁用</button>
+            <div>
+                fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
+                fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
+                fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
+                fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
+                fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
+                fdsfs这里有好多文字好多好多好多好多呀呀呀呀呀呀呀
+            </div>
         </div>
-    </div>
+    </section>
+    <hr>
+    <section>
+        <hgroup>
+            <h2>指令</h2>
+            <h3>v- ：当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM</h3>
+        </hgroup>
+        <div id="eg-v">
+            <!-- v-if: 是否显示 -->
+            <p v-if="seen">哈哈哈哈哈哈</p>
+            <!-- v-bind:参数  参数为要绑定的元素属性 -->
+            <a v-bind:href="url" target="blank">百度</a>
+            <!-- 省略 -->
+            <a :href="url" target="blank">百度</a>
+            <!-- 参数支持动态参数，从 data 中取数据 -->
+            <a v-bind:[attr]="url" target="blank">百度</a>
+            <!-- v-on:参数 参数为监听的事件名-->
+            <a v-on:click="doSomething('hahah', $event)">doSomething</a>
+            <!-- 省略 -->
+            <a @click="doSomething">doSomething</a>
+            <!-- 参数支持动态参数，从 data 中取数据 -->
+            <a v-on:[event]="doSomething('hahah', $event)">doSomething</a>
+            <!-- 动态参数为 null 时，可以被显性地用于移除绑定 -->
+
+        </div>
+
+    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         let vm = new Vue({
@@ -32,6 +64,22 @@
                 num: 12
             }
         })
+        let vmV = new Vue({
+            el: "#eg-v",
+            data: {
+                seen: true,
+                attr: 'href',
+                url: "http://www.baidu.com",
+                event: 'click'
+            },
+            methods: {
+                doSomething: function(a, b) {
+                    console.log('a', a)
+                    console.log('b', b)
+                }
+            }
+        })
     </script>
 </body>
+
 </html>
