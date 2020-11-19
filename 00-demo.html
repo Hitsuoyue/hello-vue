@@ -162,7 +162,7 @@
         app9.$data === data // => true
         app9.$el === document.getElementById('example') // => true
 
-        // $watch 是一个实例方法
+        // $watch 是一个实例方法，执行异步或开销较大的操作时使用
         app9.$watch('a', function (newValue, oldValue) {
             // 这个回调将在 `vm.a` 改变后调用
             console.log('newValue', newValue, 'oldValue', oldValue)

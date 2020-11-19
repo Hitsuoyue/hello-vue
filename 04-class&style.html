@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <h1>绑定 class</h1>
+        <div id="obj-eg">
+            <h2>对象语法</h2>
+            <div v-bind:class="classObject">classObject</div>
+            <div v-bind:class="{ isActive: false, 'textDanger': true }">classObject</div>
+            <div v-bind:class="classObj2">classObject2</div>
+        </div>
+        <div id="arr-eg">
+            <h2>数组语法</h2>
+            <div v-bind:class="[activeClass, errorClass]">classArr</div>
+            <div v-bind:class="[!error ? activeClass : '', errorClass]">classArr</div>
+            <div v-bind:class="[{active: !error}, errorClass]">classArr&Object</div>
+        </div>
+    </section>
+    <hr>
+    <section>
+        <h1>内联样式</h1>
+        <div id="style-eg">
+            <div v-bind:style="{ color: activeColor, fontSize }">hahhaha</div>
+            <div v-bind:style="styleObject">styleObject</div>
+            <div v-bind:style="[{color: activeColor}, {fontSize}]">styleObject</div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let vmObj = new Vue({
+            el: "#obj-eg",
+            data: {
+                classObject: {
+                    isActive: false,
+                    textDanger: true
+                },
+                error: true
+            },
+            computed: {
+                classObj2: function () {
+                    return {
+                        done: !this.error
+                    };
+                }
+            }
+        });
+        let vmArr = new Vue({
+            el: "#arr-eg",
+            data: {
+                activeClass: 'active',
+                errorClass: 'text-danger',
+                error: false
+            },
+        });
+        let vmStyleObj = new Vue({
+            el: "#style-eg",
+            data: {
+                activeColor: '#ccc',
+                fontSize: '12px',
+                styleObject: {
+                    color: '#0ff',
+                    fontSize: '16px'
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

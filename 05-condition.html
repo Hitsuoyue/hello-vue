@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section id="eg">
+        <h2>v-if</h2>
+        <p>元素不渲染</p>
+        <p v-if="desc">这里是相关描述</p>
+        <template v-if="box1">
+            <p>line1</p>
+            <p>line2</p>
+            <p>line3</p>
+        </template>
+        <hr>
+        <h2>v-else</h2>
+        <p>v-else 元素必须紧跟在带 v-if 或者 v-else-if 的元素的后面，否则它将不会被识别。</p>
+        <div v-if="type === 'A'">
+            A
+        </div>
+        <div v-else-if="type === 'B'">
+            B
+        </div>
+        <div v-else-if="type === 'C'">
+            C
+        </div>
+        <div v-else>
+            Not A/B/C
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: "#eg",
+            data: {
+                desc: false,
+                box1: true,
+                type: 'D'
+            },
+            computed: {
+
+            }
+        });
+    </script>
+</body>
+
+</html>
